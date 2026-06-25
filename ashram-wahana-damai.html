@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashram Wahana Damai — Tempat Latihan Spiritual</title>
+<meta name="description" content="Ashram Wahana Damai, tempat hening untuk latihan spiritual dan kedamaian batin.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   ROOT / DESIGN TOKENS
+   ============================================ */
+:root{
+  --hutan-dalam: #1F2E22;
+  --hutan-dalam-2: #283C2D;
+  --sage: #7C9070;
+  --sage-muda: #A9BC9C;
+  --gading: #F2ECDD;
+  --kapur: #FAF8F2;
+  --kayu: #5C4A3A;
+  --emas: #C9A96A;
+  --emas-redup: #B89656;
+  --garis: rgba(31,46,34,0.12);
+  --bayang: rgba(31,46,34,0.18);
+
+  --font-judul: "Fraunces", serif;
+  --font-isi: "Inter", sans-serif;
+
+  --radius: 4px;
+  --maks-lebar: 1180px;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family: var(--font-isi);
+  background: var(--kapur);
+  color: var(--hutan-dalam);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img{max-width:100%; display:block;}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer;}
+ul{list-style:none;}
+
+:focus-visible{
+  outline: 2px solid var(--emas);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+}
+
+.wrap{
+  max-width: var(--maks-lebar);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.eyebrow{
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--emas-redup);
+  font-weight: 600;
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+.eyebrow::before{
+  content:"";
+  width: 22px;
+  height: 1px;
+  background: var(--emas-redup);
+  display:block;
+}
+
+.garis-dupa{
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--garis) 15%, var(--garis) 85%, transparent);
+  margin: 0 auto;
+  max-width: var(--maks-lebar);
+}
+
+section{ padding: 100px 0; position:relative; }
+@media (max-width:720px){ section{ padding: 64px 0; } }
+
+.reveal{
+  opacity:0;
+  transform: translateY(18px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.terlihat{ opacity:1; transform:translateY(0); }
+
+h1,h2,h3{ font-family: var(--font-judul); font-weight:500; line-height:1.15; }
+
+.judul-seksi{
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  margin-top: 10px;
+  max-width: 640px;
+}
+
+.tombol{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 13px 26px;
+  border-radius: var(--radius);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+}
+.tombol-utama{
+  background: var(--hutan-dalam);
+  color: var(--kapur);
+}
+.tombol-utama:hover{ background: var(--hutan-dalam-2); transform: translateY(-2px); }
+.tombol-garis{
+  border-color: var(--hutan-dalam);
+  color: var(--hutan-dalam);
+}
+.tombol-garis:hover{ background: var(--hutan-dalam); color:var(--kapur); }
+.tombol-emas{
+  background: var(--emas);
+  color: var(--hutan-dalam);
+}
+.tombol-emas:hover{ background: var(--emas-redup); transform: translateY(-2px); }
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+header.nav{
+  position: sticky;
+  top:0;
+  z-index: 500;
+  background: rgba(250,248,242,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--garis);
+}
+.nav-isi{
+  max-width: var(--maks-lebar);
+  margin:0 auto;
+  padding: 18px 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  font-family: var(--font-judul);
+  font-size: 1.18rem;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.logo .titik{
+  width:8px; height:8px; border-radius:50%;
+  background: var(--emas);
+  display:inline-block;
+}
+.menu{
+  display:flex;
+  gap: 30px;
+  align-items:center;
+  font-size: 0.88rem;
+  font-weight:500;
+}
+.menu a{ position:relative; padding: 4px 0; }
+.menu a::after{
+  content:"";
+  position:absolute; left:0; bottom:-4px;
+  width:0; height:1px;
+  background: var(--emas-redup);
+  transition: width 0.25s ease;
+}
+.menu a:hover::after{ width:100%; }
+.menu .admin-link{
+  opacity:0.45;
+  font-size:0.78rem;
+  letter-spacing:0.05em;
+}
+.menu .admin-link:hover{ opacity:1; }
+.burger{ display:none; background:none; border:none; font-size:1.4rem; }
+
+@media (max-width:880px){
+  .menu{
+    position:fixed; top:64px; right:0; bottom:0;
+    background: var(--kapur);
+    flex-direction:column;
+    width: 240px;
+    padding: 30px;
+    align-items:flex-start;
+    gap:24px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    border-left:1px solid var(--garis);
+  }
+  .menu.terbuka{ transform: translateX(0); }
+  .burger{ display:block; }
+}
+
+/* ============================================
+   HERO + YOUTUBE
+   ============================================ */
+.hero{
+  padding-top: 70px;
+  padding-bottom: 90px;
+}
+.hero-atas{
+  text-align:center;
+  max-width: 720px;
+  margin: 0 auto 50px;
+}
+.hero-atas .eyebrow{ justify-content:center; }
+.hero-atas .eyebrow::before{ display:none; }
+.hero-atas h1{
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  margin: 18px 0 16px;
+}
+.hero-atas p{
+  color: var(--kayu);
+  font-size: 1.05rem;
+  max-width: 540px;
+  margin: 0 auto 28px;
+}
+.hero-aksi{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+.video-bingkai{
+  position:relative;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 6px;
+  overflow:hidden;
+  box-shadow: 0 30px 60px -20px var(--bayang);
+  border: 1px solid var(--garis);
+}
+.video-rasio{
+  position:relative;
+  width:100%;
+  padding-top:56.25%; /* 16:9 */
+  background: var(--hutan-dalam);
+}
+.video-rasio iframe{
+  position:absolute; top:0; left:0; width:100%; height:100%; border:0;
+}
+.video-keterangan{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap: 16px;
+  padding: 16px 22px;
+  background: var(--hutan-dalam);
+  color: var(--gading);
+  flex-wrap:wrap;
+}
+.video-keterangan span{ font-size:0.85rem; opacity:0.8; }
+.video-keterangan a{
+  font-size: 0.82rem;
+  font-weight:600;
+  color: var(--emas);
+  display:flex; align-items:center; gap:6px;
+  white-space:nowrap;
+}
+.video-keterangan a:hover{ color: var(--gading); }
+
+/* ============================================
+   TENTANG KAMI
+   ============================================ */
+.tentang{ background: var(--gading); }
+.tentang-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items:start;
+  margin-top: 40px;
+}
+.tentang-teks{ font-size:1.02rem; color: var(--kayu); }
+.tentang-teks p{ margin-bottom:16px; }
+.tentang-sisi{
+  border-left: 1px solid var(--garis);
+  padding-left: 36px;
+  display:flex; flex-direction:column; gap:26px;
+}
+.statistik-item .angka{
+  font-family: var(--font-judul);
+  font-size: 2rem;
+  color: var(--hutan-dalam);
+}
+.statistik-item .label{
+  font-size:0.82rem;
+  color: var(--kayu);
+  letter-spacing:0.02em;
+}
+@media (max-width:820px){
+  .tentang-grid{ grid-template-columns:1fr; gap:36px; }
+  .tentang-sisi{ border-left:none; border-top:1px solid var(--garis); padding-left:0; padding-top:30px; flex-direction:row; flex-wrap:wrap; gap:36px; }
+}
+
+/* ============================================
+   KEGIATAN
+   ============================================ */
+.kegiatan-header{
+  display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap;
+}
+.daftar-kegiatan{
+  margin-top: 44px;
+  display:flex;
+  flex-direction:column;
+}
+.item-kegiatan{
+  display:grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 28px;
+  align-items:center;
+  padding: 26px 0;
+  border-top: 1px solid var(--garis);
+  transition: padding-left 0.3s ease;
+}
+.item-kegiatan:last-child{ border-bottom: 1px solid var(--garis); }
+.item-kegiatan:hover{ padding-left: 10px; }
+.tanggal-kegiatan{
+  font-family: var(--font-judul);
+  font-size: 0.95rem;
+  color: var(--emas-redup);
+  letter-spacing:0.03em;
+}
+.info-kegiatan h3{ font-size:1.18rem; margin-bottom:6px; }
+.info-kegiatan p{ font-size:0.92rem; color: var(--kayu); max-width:520px; }
+.kegiatan-kosong{
+  padding: 50px 0;
+  text-align:center;
+  color: var(--kayu);
+  font-size:0.95rem;
+  border-top:1px solid var(--garis);
+  border-bottom:1px solid var(--garis);
+}
+@media (max-width:680px){
+  .item-kegiatan{ grid-template-columns:1fr; gap:8px; }
+}
+
+/* ============================================
+   DOKUMENTASI / GALERI
+   ============================================ */
+.dokumentasi{ background: var(--hutan-dalam); color: var(--gading); }
+.dokumentasi .eyebrow{ color: var(--emas); }
+.dokumentasi .judul-seksi{ color: var(--kapur); }
+.dokumentasi p.intro{ color: var(--sage-muda); max-width:540px; margin-top:14px; }
+
+.galeri{
+  margin-top: 46px;
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.galeri-item{
+  position:relative;
+  aspect-ratio: 4/5;
+  overflow:hidden;
+  border-radius: 4px;
+  cursor:pointer;
+  background: var(--hutan-dalam-2);
+}
+.galeri-item img{
+  width:100%; height:100%; object-fit:cover;
+  transition: transform 0.5s ease;
+}
+.galeri-item:hover img{ transform: scale(1.07); }
+.galeri-caption{
+  position:absolute; left:0; right:0; bottom:0;
+  padding: 14px 16px;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.65));
+  font-size:0.82rem;
+  color: var(--kapur);
+}
+.galeri-kosong{
+  grid-column: 1/-1;
+  text-align:center;
+  padding: 40px 0;
+  color: var(--sage-muda);
+  border: 1px dashed rgba(242,236,221,0.2);
+  border-radius:4px;
+}
+
+.lightbox{
+  position:fixed; inset:0; z-index:1000;
+  background: rgba(15,20,16,0.92);
+  display:none;
+  align-items:center; justify-content:center;
+  padding: 30px;
+}
+.lightbox.terbuka{ display:flex; }
+.lightbox img{ max-width:90vw; max-height:80vh; border-radius:4px; }
+.lightbox-tutup{
+  position:absolute; top:24px; right:30px;
+  background:none; border:none; color:#fff; font-size:1.8rem;
+}
+.lightbox-cap{ position:absolute; bottom:30px; left:0; right:0; text-align:center; color: var(--gading); font-size:0.9rem; }
+
+/* ============================================
+   LOKASI
+   ============================================ */
+.lokasi-grid{
+  margin-top: 40px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items:stretch;
+}
+.lokasi-info{
+  background: var(--gading);
+  padding: 36px;
+  border-radius: 4px;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.lokasi-baris{ margin-bottom:22px; }
+.lokasi-baris .label{
+  font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase;
+  color: var(--emas-redup); font-weight:600; margin-bottom:6px;
+}
+.lokasi-baris .nilai{ font-size:1rem; color: var(--hutan-dalam); }
+.peta-bingkai{
+  border-radius:4px; overflow:hidden; border:1px solid var(--garis);
+  min-height: 320px;
+}
+.peta-bingkai iframe{ width:100%; height:100%; min-height:320px; border:0; }
+@media (max-width:820px){ .lokasi-grid{ grid-template-columns:1fr; } }
+
+/* ============================================
+   KONTAK
+   ============================================ */
+.kontak-grid{
+  margin-top:40px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+.form-kontak{ display:flex; flex-direction:column; gap:16px; }
+.field{ display:flex; flex-direction:column; gap:6px; }
+.field label{ font-size:0.78rem; letter-spacing:0.04em; color: var(--kayu); }
+.field input, .field textarea{
+  font-family: inherit;
+  padding: 13px 14px;
+  border: 1px solid var(--garis);
+  border-radius: 4px;
+  background: var(--kapur);
+  font-size: 0.95rem;
+  color: var(--hutan-dalam);
+}
+.field input:focus, .field textarea:focus{ border-color: var(--emas-redup); }
+.pesan-status{ font-size:0.85rem; color: var(--sage); display:none; }
+.pesan-status.tampil{ display:block; }
+
+.kontak-sisi{ display:flex; flex-direction:column; gap:22px; justify-content:center; }
+.kontak-item .label{ font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--emas-redup); font-weight:600; margin-bottom:4px;}
+.kontak-item .nilai{ font-size:1.05rem; }
+@media (max-width:820px){ .kontak-grid{ grid-template-columns:1fr; gap:36px; } }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer{
+  background: var(--hutan-dalam);
+  color: var(--sage-muda);
+  padding: 50px 0 30px;
+  font-size: 0.85rem;
+}
+.footer-isi{
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  padding-bottom:24px;
+  border-bottom: 1px solid rgba(242,236,221,0.12);
+}
+.footer-logo{ font-family: var(--font-judul); color: var(--gading); font-size:1.1rem; }
+.footer-sosial{ display:flex; gap:18px; }
+.footer-sosial a:hover{ color: var(--emas); }
+.footer-bawah{
+  padding-top:20px;
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  opacity:0.7;
+}
+.footer-bawah button{
+  background:none; border:none; color:inherit; opacity:0.7; font-size:0.8rem; text-decoration:underline;
+}
+.footer-bawah button:hover{ opacity:1; }
+
+/* ============================================
+   MODAL LOGIN ADMIN
+   ============================================ */
+.modal-overlay{
+  position:fixed; inset:0; z-index:900;
+  background: rgba(31,46,34,0.55);
+  display:none;
+  align-items:center; justify-content:center;
+  padding:20px;
+}
+.modal-overlay.terbuka{ display:flex; }
+.modal-box{
+  background: var(--kapur);
+  border-radius: 6px;
+  max-width: 380px;
+  width:100%;
+  padding: 38px 34px;
+  position:relative;
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.4);
+}
+.modal-tutup{
+  position:absolute; top:16px; right:18px;
+  background:none; border:none; font-size:1.4rem; color: var(--kayu);
+}
+.modal-box h2{ font-size:1.4rem; margin-bottom:6px; }
+.modal-box .sub{ font-size:0.85rem; color: var(--kayu); margin-bottom:24px; }
+.modal-box .field{ margin-bottom:14px; }
+.modal-error{
+  font-size:0.82rem; color:#A5453A; margin-top:6px; display:none;
+}
+.modal-error.tampil{ display:block; }
+.modal-box .tombol{ width:100%; justify-content:center; margin-top:8px; }
+.modal-hint{ font-size:0.74rem; color: var(--sage); margin-top:16px; line-height:1.5; }
+
+/* ============================================
+   DASHBOARD ADMIN
+   ============================================ */
+#dashboard-admin{
+  display:none;
+  position:fixed; inset:0; z-index:800;
+  background: var(--kapur);
+  overflow-y:auto;
+}
+#dashboard-admin.terbuka{ display:block; }
+.db-nav{
+  position:sticky; top:0; z-index:50;
+  background: var(--hutan-dalam); color: var(--gading);
+  padding: 18px 28px;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.db-nav .logo{ color: var(--gading); }
+.db-keluar{
+  background: rgba(242,236,221,0.1);
+  border:1px solid rgba(242,236,221,0.25);
+  color: var(--gading);
+  padding: 9px 18px;
+  border-radius:4px;
+  font-size:0.82rem;
+}
+.db-keluar:hover{ background: rgba(242,236,221,0.18); }
+
+.db-wrap{ max-width: 980px; margin:0 auto; padding: 50px 28px 90px; }
+.db-judul{ margin-bottom: 6px; }
+.db-sub{ color: var(--kayu); font-size:0.92rem; margin-bottom:46px; }
+
+.db-blok{
+  background: #fff;
+  border: 1px solid var(--garis);
+  border-radius: 6px;
+  padding: 30px 32px;
+  margin-bottom: 34px;
+}
+.db-blok h3{ font-size:1.15rem; margin-bottom:4px; }
+.db-blok .ket{ font-size:0.82rem; color: var(--kayu); margin-bottom:22px; }
+
+.db-field{ margin-bottom:16px; display:flex; flex-direction:column; gap:6px; }
+.db-field label{ font-size:0.78rem; font-weight:600; color: var(--kayu); }
+.db-field input, .db-field textarea{
+  padding: 11px 13px; border:1px solid var(--garis); border-radius:4px; font-family:inherit; font-size:0.92rem;
+  background: var(--kapur);
+}
+.db-field textarea{ resize:vertical; min-height:90px; }
+.db-grid2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:600px){ .db-grid2{ grid-template-columns:1fr; } }
+
+.db-list-item{
+  border: 1px solid var(--garis);
+  border-radius: 4px;
+  padding: 18px;
+  margin-bottom: 14px;
+  position:relative;
+}
+.db-list-hapus{
+  position:absolute; top:14px; right:14px;
+  background:none; border:none; color:#A5453A; font-size:0.8rem; text-decoration:underline;
+}
+.db-tambah{
+  margin-top: 4px;
+}
+.db-simpan-bar{
+  display:flex; align-items:center; gap:14px; margin-top:10px;
+}
+.db-status-simpan{
+  font-size:0.84rem; color: var(--sage); opacity:0; transition:opacity 0.3s ease;
+}
+.db-status-simpan.tampil{ opacity:1; }
+
+.db-galeri-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:14px; margin-top:6px; }
+.db-galeri-thumb{ position:relative; border:1px solid var(--garis); border-radius:4px; overflow:hidden; aspect-ratio:4/5; }
+.db-galeri-thumb img{ width:100%; height:100%; object-fit:cover; }
+.db-galeri-thumb button{
+  position:absolute; top:6px; right:6px;
+  background: rgba(0,0,0,0.6); color:#fff; border:none; border-radius:50%;
+  width:24px; height:24px; font-size:0.85rem; line-height:1;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVBAR
+     ============================================ -->
+<header class="nav">
+  <div class="nav-isi">
+    <a href="#" class="logo"><span class="titik"></span> Ashram Wahana Damai</a>
+    <nav class="menu" id="menuUtama">
+      <a href="#tentang">Tentang Kami</a>
+      <a href="#kegiatan">Informasi &amp; Kegiatan</a>
+      <a href="#dokumentasi">Dokumentasi</a>
+      <a href="#lokasi">Lokasi</a>
+      <a href="#kontak">Kontak</a>
+      <a href="#" class="admin-link" id="bukaLoginNav">Admin</a>
+    </nav>
+    <button class="burger" id="burgerBtn" aria-label="Buka menu">☰</button>
+  </div>
+</header>
+
+<!-- ============================================
+     HERO + EMBED YOUTUBE (TAMPILAN DEPAN)
+     ============================================ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-atas reveal">
+      <span class="eyebrow">Latihan Spiritual · Kedamaian Batin</span>
+      <h1>Ashram Wahana Damai</h1>
+      <p>Tempat hening untuk berlatih, merenung, dan menyelaraskan diri dengan kedamaian batin — bersama komunitas yang berjalan di jalan spiritual yang sama.</p>
+      <div class="hero-aksi">
+        <a href="#kegiatan" class="tombol tombol-utama">Lihat Kegiatan</a>
+        <a href="#lokasi" class="tombol tombol-garis">Kunjungi Lokasi</a>
+      </div>
+    </div>
+
+    <div class="video-bingkai reveal">
+      <div class="video-rasio">
+        <!--
+          PENTING — CARA MENAMPILKAN VIDEO YANG BENAR:
+          src di bawah masih PLACEHOLDER dan belum menampilkan video asli. Ganti dengan
+          salah satu format berikut:
+
+          1) Menampilkan SATU video tertentu (paling mudah & disarankan):
+             https://www.youtube.com/embed/ID_VIDEO
+             ID_VIDEO didapat dari URL video, contoh:
+             youtube.com/watch?v=ID_VIDEO  ->  ID_VIDEO ada setelah "v="
+
+          2) Menampilkan PLAYLIST/seluruh upload kanal secara berurutan:
+             https://www.youtube.com/embed/videoseries?list=ID_PLAYLIST
+             ID_PLAYLIST didapat dari YouTube Studio > Konten > Playlist "Uploads",
+             biasanya berawalan "UU..."
+        -->
+        <iframe
+          src="https://www.youtube.com/embed/videoseries?list=GANTI_DENGAN_ID_PLAYLIST_ATAU_VIDEO"
+          title="Conzius Ashram TV"
+          id="iframeYoutube"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+      <div class="video-keterangan">
+        <span>Tayangan dari kanal resmi — Conzius Ashram TV</span>
+        <a href="https://youtube.com/@conziusashramtv?si=4b1PQq7ZWrbGGPNV" target="_blank" rel="noopener">Kunjungi Kanal YouTube ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="garis-dupa"></div></div>
+
+<!-- ============================================
+     TENTANG KAMI
+     ============================================ -->
+<section class="tentang" id="tentang">
+  <div class="wrap">
+    <span class="eyebrow reveal">Tentang Kami</span>
+    <h2 class="judul-seksi reveal">Jalan hening yang kami tempuh bersama</h2>
+
+    <div class="tentang-grid">
+      <div class="tentang-teks reveal" id="isiTentangKami">
+        <p>Ashram Wahana Damai adalah tempat latihan spiritual yang terbuka bagi siapa pun yang mencari ketenangan, kejernihan batin, dan ruang untuk bertumbuh secara rohani. Di tengah keseharian yang sering terasa terburu-buru, kami menyediakan ruang dan waktu untuk berhenti, merenung, dan berlatih bersama.</p>
+        <p>Setiap kegiatan yang kami jalankan — baik latihan harian, retret, maupun perayaan bersama — dijalankan dengan kesederhanaan dan kehangatan, dibimbing oleh nilai-nilai kedamaian, kesadaran, dan kebersamaan.</p>
+      </div>
+      <div class="tentang-sisi reveal">
+        <div class="statistik-item">
+          <div class="angka" id="statTahun">10+</div>
+          <div class="label">Tahun Melayani Komunitas</div>
+        </div>
+        <div class="statistik-item">
+          <div class="angka" id="statKegiatan">Mingguan</div>
+          <div class="label">Jadwal Latihan Rutin</div>
+        </div>
+        <div class="statistik-item">
+          <div class="angka" id="statPintu">Terbuka</div>
+          <div class="label">Untuk Semua Kalangan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     INFORMASI & KEGIATAN
+     ============================================ -->
+<section id="kegiatan">
+  <div class="wrap">
+    <div class="kegiatan-header reveal">
+      <div>
+        <span class="eyebrow">Informasi &amp; Kegiatan</span>
+        <h2 class="judul-seksi">Jadwal dan kabar terbaru dari ashram</h2>
+      </div>
+    </div>
+
+    <div class="daftar-kegiatan reveal" id="daftarKegiatan">
+      <!-- diisi otomatis oleh JavaScript dari data tersimpan -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     DOKUMENTASI KEGIATAN (GALERI)
+     ============================================ -->
+<section class="dokumentasi" id="dokumentasi">
+  <div class="wrap">
+    <span class="eyebrow reveal">Dokumentasi</span>
+    <h2 class="judul-seksi reveal">Jejak langkah dan kebersamaan kami</h2>
+    <p class="intro reveal">Sebagian momen dari latihan, perayaan, dan kebersamaan yang telah kami jalani.</p>
+
+    <div class="galeri reveal" id="galeriDokumentasi">
+      <!-- diisi otomatis oleh JavaScript -->
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox untuk galeri -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-tutup" id="tutupLightbox" aria-label="Tutup">&times;</button>
+  <img src="" alt="" id="lightboxImg">
+  <div class="lightbox-cap" id="lightboxCap"></div>
+</div>
+
+<!-- ============================================
+     LOKASI & PETA
+     ============================================ -->
+<section id="lokasi">
+  <div class="wrap">
+    <span class="eyebrow reveal">Lokasi</span>
+    <h2 class="judul-seksi reveal">Datang dan rasakan ketenangannya</h2>
+
+    <div class="lokasi-grid reveal">
+      <div class="lokasi-info">
+        <div>
+          <div class="lokasi-baris">
+            <div class="label">Alamat</div>
+            <div class="nilai" id="teksAlamat">Lokasi Ashram Wahana Damai — koordinat 6°38'54.8"S 106°55'19.3"E (Kabupaten Bogor, Jawa Barat). Detail alamat lengkap dapat diperbarui oleh admin.</div>
+          </div>
+          <div class="lokasi-baris">
+            <div class="label">Koordinat GPS</div>
+            <div class="nilai" id="teksKoordinat">6°38'54.8"S 106°55'19.3"E (-6.648556, 106.922028)</div>
+          </div>
+          <div class="lokasi-baris">
+            <div class="label">Jam Buka</div>
+            <div class="nilai" id="teksJamBuka">Setiap hari, 06.00 – 18.00 WIB</div>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps?q=-6.648556,106.922028" target="_blank" rel="noopener" class="tombol tombol-emas" id="tombolMaps">Buka di Google Maps ↗</a>
+      </div>
+      <div class="peta-bingkai">
+        <iframe
+          id="iframePeta"
+          src="https://www.google.com/maps?q=-6.648556,106.922028&z=15&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     KONTAK
+     ============================================ -->
+<section id="kontak">
+  <div class="wrap">
+    <span class="eyebrow reveal">Kontak</span>
+    <h2 class="judul-seksi reveal">Kami senang mendengar dari Anda</h2>
+
+    <div class="kontak-grid reveal">
+      <form class="form-kontak" id="formKontak">
+        <div class="field">
+          <label for="namaKontak">Nama</label>
+          <input type="text" id="namaKontak" required placeholder="Nama Anda">
+        </div>
+        <div class="field">
+          <label for="emailKontak">Email</label>
+          <input type="email" id="emailKontak" required placeholder="email@contoh.com">
+        </div>
+        <div class="field">
+          <label for="pesanKontak">Pesan</label>
+          <textarea id="pesanKontak" rows="4" required placeholder="Tuliskan pesan, pertanyaan, atau niat Anda untuk berkunjung..."></textarea>
+        </div>
+        <button type="submit" class="tombol tombol-utama" style="align-self:flex-start;">Kirim Pesan</button>
+        <p class="pesan-status" id="statusKirim">Terima kasih, pesan Anda telah kami terima. Kami akan segera menghubungi Anda.</p>
+      </form>
+
+      <div class="kontak-sisi">
+        <div class="kontak-item">
+          <div class="label">WhatsApp</div>
+          <div class="nilai" id="teksWA">+62 812-0000-0000</div>
+        </div>
+        <div class="kontak-item">
+          <div class="label">Email</div>
+          <div class="nilai" id="teksEmail">info@ashramwahanadamai.org</div>
+        </div>
+        <div class="kontak-item">
+          <div class="label">Media Sosial</div>
+          <div class="nilai"><a href="https://youtube.com/@conziusashramtv?si=4b1PQq7ZWrbGGPNV" target="_blank" rel="noopener">YouTube — Conzius Ashram TV ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-isi">
+      <div class="footer-logo">Ashram Wahana Damai</div>
+      <div class="footer-sosial">
+        <a href="https://youtube.com/@conziusashramtv?si=4b1PQq7ZWrbGGPNV" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bawah">
+      <span>© <span id="tahunFooter"></span> Ashram Wahana Damai. Semua hak dilindungi.</span>
+      <button id="bukaLoginFooter">Masuk sebagai Admin</button>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================
+     MODAL LOGIN ADMIN
+     ============================================ -->
+<div class="modal-overlay" id="modalLogin">
+  <div class="modal-box">
+    <button class="modal-tutup" id="tutupModalLogin" aria-label="Tutup">&times;</button>
+    <h2>Masuk sebagai Admin</h2>
+    <p class="sub">Khusus pengelola Ashram Wahana Damai untuk mengubah isi website.</p>
+    <form id="formLogin">
+      <div class="field">
+        <label for="userAdmin">Username</label>
+        <input type="text" id="userAdmin" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="passAdmin">Kata Sandi</label>
+        <input type="password" id="passAdmin" autocomplete="current-password" required>
+      </div>
+      <p class="modal-error" id="errorLogin">Username atau kata sandi salah.</p>
+      <button type="submit" class="tombol tombol-utama">Masuk</button>
+    </form>
+    <p class="modal-hint">Demo: username <strong>admin</strong>, kata sandi <strong>ashramdamai</strong>. Ganti kredensial ini di kode sebelum website digunakan secara nyata (lihat komentar di bagian JavaScript).</p>
+  </div>
+</div>
+
+<!-- ============================================
+     DASHBOARD ADMIN
+     ============================================ -->
+<div id="dashboard-admin">
+  <div class="db-nav">
+    <div class="logo">Panel Admin — Ashram Wahana Damai</div>
+    <button class="db-keluar" id="tombolKeluarAdmin">Keluar</button>
+  </div>
+
+  <div class="db-wrap">
+    <h2 class="db-judul">Dasbor Pengelola</h2>
+    <p class="db-sub">Semua perubahan tersimpan otomatis di perangkat ini. Lihat catatan teknis di bagian paling bawah untuk menghubungkan ke penyimpanan permanen.</p>
+
+    <!-- BLOK: TENTANG KAMI -->
+    <div class="db-blok">
+      <h3>Tentang Kami</h3>
+      <p class="ket">Teks ini akan muncul di bagian "Tentang Kami" pada halaman utama.</p>
+      <div class="db-field">
+        <label for="dbTentang">Deskripsi (boleh lebih dari satu paragraf, pisahkan paragraf dengan baris baru)</label>
+        <textarea id="dbTentang" rows="6"></textarea>
+      </div>
+      <div class="db-grid2">
+        <div class="db-field">
+          <label for="dbStatTahun">Lama Melayani Komunitas</label>
+          <input type="text" id="dbStatTahun" placeholder="contoh: 10+">
+        </div>
+        <div class="db-field">
+          <label for="dbStatKegiatan">Frekuensi Latihan</label>
+          <input type="text" id="dbStatKegiatan" placeholder="contoh: Mingguan">
+        </div>
+      </div>
+      <div class="db-simpan-bar">
+        <button class="tombol tombol-utama" id="simpanTentang">Simpan Perubahan</button>
+        <span class="db-status-simpan" id="statusSimpanTentang">Tersimpan.</span>
+      </div>
+    </div>
+
+    <!-- BLOK: INFORMASI & KEGIATAN -->
+    <div class="db-blok">
+      <h3>Informasi &amp; Kegiatan</h3>
+      <p class="ket">Tambah, ubah, atau hapus jadwal dan kabar kegiatan yang tampil di halaman utama.</p>
+      <div id="daftarKegiatanAdmin"></div>
+      <button class="tombol tombol-garis db-tambah" id="tambahKegiatan">+ Tambah Kegiatan</button>
+      <div class="db-simpan-bar">
+        <button class="tombol tombol-utama" id="simpanKegiatan">Simpan Semua Kegiatan</button>
+        <span class="db-status-simpan" id="statusSimpanKegiatan">Tersimpan.</span>
+      </div>
+    </div>
+
+    <!-- BLOK: DOKUMENTASI / GALERI -->
+    <div class="db-blok">
+      <h3>Dokumentasi Kegiatan</h3>
+      <p class="ket">Tambahkan foto dokumentasi (gunakan tautan URL gambar) beserta keterangannya.</p>
+      <div class="db-grid2">
+        <div class="db-field">
+          <label for="dbFotoUrl">Tautan URL Gambar</label>
+          <input type="text" id="dbFotoUrl" placeholder="https://...">
+        </div>
+        <div class="db-field">
+          <label for="dbFotoCap">Keterangan Foto</label>
+          <input type="text" id="dbFotoCap" placeholder="contoh: Latihan pagi bersama, Juni 2026">
+        </div>
+      </div>
+      <button class="tombol tombol-garis db-tambah" id="tambahFoto">+ Tambah ke Galeri</button>
+      <div class="db-galeri-grid" id="galeriAdmin"></div>
+      <div class="db-simpan-bar">
+        <span class="db-status-simpan tampil" style="color:var(--kayu)">Setiap foto tersimpan otomatis saat ditambahkan.</span>
+      </div>
+    </div>
+
+    <!-- BLOK: LOKASI -->
+    <div class="db-blok">
+      <h3>Lokasi &amp; Peta</h3>
+      <p class="ket">Perbarui alamat lengkap dan koordinat GPS ashram.</p>
+      <div class="db-field">
+        <label for="dbAlamat">Alamat Lengkap</label>
+        <textarea id="dbAlamat" rows="3"></textarea>
+      </div>
+      <div class="db-grid2">
+        <div class="db-field">
+          <label for="dbKoordinatTeks">Koordinat (format derajat, untuk ditampilkan)</label>
+          <input type="text" id="dbKoordinatTeks" placeholder='contoh: 6°38&apos;54.8&quot;S 106°55&apos;19.3&quot;E'>
+        </div>
+        <div class="db-field">
+          <label for="dbKoordinatDesimal">Koordinat Desimal (untuk peta, format: latitude,longitude)</label>
+          <input type="text" id="dbKoordinatDesimal" placeholder="contoh: -6.648556,106.922028">
+        </div>
+      </div>
+      <div class="db-field">
+        <label for="dbJamBuka">Jam Buka</label>
+        <input type="text" id="dbJamBuka" placeholder="contoh: Setiap hari, 06.00 - 18.00 WIB">
+      </div>
+      <div class="db-simpan-bar">
+        <button class="tombol tombol-utama" id="simpanLokasi">Simpan Perubahan</button>
+        <span class="db-status-simpan" id="statusSimpanLokasi">Tersimpan.</span>
+      </div>
+    </div>
+
+    <!-- BLOK: KONTAK -->
+    <div class="db-blok">
+      <h3>Kontak</h3>
+      <div class="db-grid2">
+        <div class="db-field">
+          <label for="dbWA">Nomor WhatsApp</label>
+          <input type="text" id="dbWA" placeholder="+62 812-0000-0000">
+        </div>
+        <div class="db-field">
+          <label for="dbEmail">Email</label>
+          <input type="text" id="dbEmail" placeholder="info@ashramwahanadamai.org">
+        </div>
+      </div>
+      <div class="db-simpan-bar">
+        <button class="tombol tombol-utama" id="simpanKontak">Simpan Perubahan</button>
+        <span class="db-status-simpan" id="statusSimpanKontak">Tersimpan.</span>
+      </div>
+    </div>
+
+    <p style="font-size:0.78rem; color:var(--kayu); line-height:1.6; margin-top:10px;">
+      <strong>Catatan teknis:</strong> Saat ini semua data disimpan di <em>localStorage</em> peramban perangkat ini saja —
+      artinya perubahan tidak otomatis muncul di perangkat lain. Untuk penggunaan jangka panjang, sambungkan
+      fungsi <code>simpanData()</code> dan <code>ambilData()</code> pada kode JavaScript ke layanan backend
+      seperti Firebase Realtime Database/Firestore atau Supabase, agar data tersimpan permanen di server dan
+      bisa diakses dari mana saja.
+    </p>
+  </div>
+</div>
+
+<script>
+/* ===========================================================
+   ASHRAM WAHANA DAMAI — LOGIKA WEBSITE
+   Catatan: Semua data disimpan di localStorage sebagai contoh.
+   Untuk produksi, ganti fungsi simpanData()/ambilData() agar
+   terhubung ke backend (Firebase/Supabase/dll) supaya data
+   tersimpan permanen dan sinkron di semua perangkat.
+   =========================================================== */
+
+const KUNCI_DATA = "ashramWahanaDamaiData";
+const KUNCI_SESI = "ashramWahanaDamaiSesiAdmin";
+
+/* --- GANTI KREDENSIAL INI SEBELUM DIGUNAKAN SECARA NYATA ---
+   Untuk keamanan sungguhan, jangan simpan password di JavaScript sisi klien.
+   Gunakan sistem autentikasi backend (contoh: Firebase Authentication). */
+const KREDENSIAL_ADMIN = { username: "admin", password: "ashramdamai" };
+
+// Data bawaan (default) jika belum ada data tersimpan sebelumnya
+const dataBawaan = {
+  tentang: {
+    paragraf: [
+      "Ashram Wahana Damai adalah tempat latihan spiritual yang terbuka bagi siapa pun yang mencari ketenangan, kejernihan batin, dan ruang untuk bertumbuh secara rohani. Di tengah keseharian yang sering terasa terburu-buru, kami menyediakan ruang dan waktu untuk berhenti, merenung, dan berlatih bersama.",
+      "Setiap kegiatan yang kami jalankan — baik latihan harian, retret, maupun perayaan bersama — dijalankan dengan kesederhanaan dan kehangatan, dibimbing oleh nilai-nilai kedamaian, kesadaran, dan kebersamaan."
+    ],
+    statTahun: "10+",
+    statKegiatan: "Mingguan"
+  },
+  kegiatan: [
+    { tanggal: "05 Jul 2026", judul: "Latihan Hening Akhir Pekan", deskripsi: "Sesi meditasi dan refleksi bersama, terbuka untuk umum, tidak dipungut biaya." },
+    { tanggal: "17 Jul 2026", judul: "Retret Tiga Hari: Jalan Kedamaian", deskripsi: "Pendaftaran dibuka untuk anggota dan tamu baru. Kuota terbatas." },
+    { tanggal: "01 Agu 2026", judul: "Perayaan Bulan Purnama", deskripsi: "Doa bersama dan perayaan komunitas, dilanjutkan dengan makan bersama." }
+  ],
+  galeri: [
+    { url: "https://images.unsplash.com/photo-1545389336-cf090694435e?q=80&w=800&auto=format&fit=crop", caption: "Latihan pagi bersama komunitas" },
+    { url: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800&auto=format&fit=crop", caption: "Ruang hening untuk meditasi" },
+    { url: "https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?q=80&w=800&auto=format&fit=crop", caption: "Suasana retret tahunan" }
+  ],
+  lokasi: {
+    alamat: "Lokasi Ashram Wahana Damai — koordinat 6°38'54.8\"S 106°55'19.3\"E (Kabupaten Bogor, Jawa Barat). Mohon perbarui dengan alamat lengkap melalui Panel Admin.",
+    koordinatTeks: "6°38'54.8\"S 106°55'19.3\"E (-6.648556, 106.922028)",
+    koordinatDesimal: "-6.648556,106.922028",
+    jamBuka: "Setiap hari, 06.00 – 18.00 WIB"
+  },
+  kontak: {
+    wa: "+62 812-0000-0000",
+    email: "info@ashramwahanadamai.org"
+  }
+};
+
+// --- Fungsi penyimpanan data (placeholder localStorage, ganti ke backend untuk produksi) ---
+function ambilData(){
+  try{
+    const mentah = localStorage.getItem(KUNCI_DATA);
+    if(!mentah) return JSON.parse(JSON.stringify(dataBawaan));
+    return JSON.parse(mentah);
+  }catch(e){
+    console.error("Gagal membaca data, memakai data bawaan.", e);
+    return JSON.parse(JSON.stringify(dataBawaan));
+  }
+}
+function simpanData(data){
+  try{
+    localStorage.setItem(KUNCI_DATA, JSON.stringify(data));
+    return true;
+  }catch(e){
+    console.error("Gagal menyimpan data.", e);
+    return false;
+  }
+}
+
+let dataSaatIni = ambilData();
+
+// --- Util kecil: escape teks agar aman dimasukkan ke HTML (mencegah XSS sederhana) ---
+function escapeHTML(teks){
+  const d = document.createElement("div");
+  d.innerText = teks;
+  return d.innerHTML;
+}
+
+/* ===========================================================
+   RENDER TAMPILAN PUBLIK
+   =========================================================== */
+function renderTentang(){
+  const c = document.getElementById("isiTentangKami");
+  c.innerHTML = dataSaatIni.tentang.paragraf.map(p => `<p>${escapeHTML(p)}</p>`).join("");
+  document.getElementById("statTahun").textContent = dataSaatIni.tentang.statTahun;
+  document.getElementById("statKegiatan").textContent = dataSaatIni.tentang.statKegiatan;
+}
+
+function renderKegiatan(){
+  const c = document.getElementById("daftarKegiatan");
+  if(!dataSaatIni.kegiatan.length){
+    c.innerHTML = `<div class="kegiatan-kosong">Belum ada kegiatan terjadwal. Admin dapat menambahkannya melalui Panel Admin.</div>`;
+    return;
+  }
+  c.innerHTML = dataSaatIni.kegiatan.map(k => `
+    <div class="item-kegiatan">
+      <div class="tanggal-kegiatan">${escapeHTML(k.tanggal)}</div>
+      <div class="info-kegiatan">
+        <h3>${escapeHTML(k.judul)}</h3>
+        <p>${escapeHTML(k.deskripsi)}</p>
+      </div>
+      <div></div>
+    </div>
+  `).join("");
+}
+
+function renderGaleri(){
+  const c = document.getElementById("galeriDokumentasi");
+  if(!dataSaatIni.galeri.length){
+    c.innerHTML = `<div class="galeri-kosong">Belum ada dokumentasi yang diunggah.</div>`;
+    return;
+  }
+  c.innerHTML = dataSaatIni.galeri.map((g, i) => `
+    <div class="galeri-item" data-index="${i}">
+      <img src="${escapeHTML(g.url)}" alt="${escapeHTML(g.caption)}" loading="lazy">
+      <div class="galeri-caption">${escapeHTML(g.caption)}</div>
+    </div>
+  `).join("");
+
+  document.querySelectorAll(".galeri-item").forEach(el => {
+    el.addEventListener("click", () => {
+      const idx = +el.dataset.index;
+      const item = dataSaatIni.galeri[idx];
+      document.getElementById("lightboxImg").src = item.url;
+      document.getElementById("lightboxImg").alt = item.caption;
+      document.getElementById("lightboxCap").textContent = item.caption;
+      document.getElementById("lightbox").classList.add("terbuka");
+    });
+  });
+}
+
+function renderLokasi(){
+  const l = dataSaatIni.lokasi;
+  document.getElementById("teksAlamat").textContent = l.alamat;
+  document.getElementById("teksKoordinat").textContent = l.koordinatTeks;
+  document.getElementById("teksJamBuka").textContent = l.jamBuka;
+  document.getElementById("iframePeta").src = `https://www.google.com/maps?q=${encodeURIComponent(l.koordinatDesimal)}&z=15&output=embed`;
+  document.getElementById("tombolMaps").href = `https://www.google.com/maps?q=${encodeURIComponent(l.koordinatDesimal)}`;
+}
+
+function renderKontak(){
+  document.getElementById("teksWA").textContent = dataSaatIni.kontak.wa;
+  document.getElementById("teksEmail").textContent = dataSaatIni.kontak.email;
+}
+
+function renderSemuaTampilanPublik(){
+  renderTentang();
+  renderKegiatan();
+  renderGaleri();
+  renderLokasi();
+  renderKontak();
+}
+renderSemuaTampilanPublik();
+
+document.getElementById("tahunFooter").textContent = new Date().getFullYear();
+
+/* ===========================================================
+   NAVBAR MOBILE
+   =========================================================== */
+const menuUtama = document.getElementById("menuUtama");
+document.getElementById("burgerBtn").addEventListener("click", () => {
+  menuUtama.classList.toggle("terbuka");
+});
+menuUtama.querySelectorAll("a").forEach(a => a.addEventListener("click", () => menuUtama.classList.remove("terbuka")));
+
+/* ===========================================================
+   ANIMASI REVEAL SAAT SCROLL
+   =========================================================== */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("terlihat");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+/* ===========================================================
+   LIGHTBOX GALERI
+   =========================================================== */
+document.getElementById("tutupLightbox").addEventListener("click", () => {
+  document.getElementById("lightbox").classList.remove("terbuka");
+});
+document.getElementById("lightbox").addEventListener("click", (e) => {
+  if(e.target.id === "lightbox") e.target.classList.remove("terbuka");
+});
+
+/* ===========================================================
+   FORM KONTAK (dummy, tanpa backend)
+   =========================================================== */
+document.getElementById("formKontak").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const status = document.getElementById("statusKirim");
+  status.classList.add("tampil");
+  e.target.reset();
+  setTimeout(() => status.classList.remove("tampil"), 6000);
+  // Untuk produksi: kirim data form ke email/backend, contoh memakai layanan seperti Formspree,
+  // atau endpoint backend sendiri.
+});
+
+/* ===========================================================
+   LOGIN ADMIN
+   =========================================================== */
+const modalLogin = document.getElementById("modalLogin");
+function bukaModalLogin(){ modalLogin.classList.add("terbuka"); document.getElementById("errorLogin").classList.remove("tampil"); }
+function tutupModalLogin(){ modalLogin.classList.remove("terbuka"); document.getElementById("formLogin").reset(); }
+
+document.getElementById("bukaLoginNav").addEventListener("click", (e) => { e.preventDefault(); bukaModalLogin(); });
+document.getElementById("bukaLoginFooter").addEventListener("click", bukaModalLogin);
+document.getElementById("tutupModalLogin").addEventListener("click", tutupModalLogin);
+modalLogin.addEventListener("click", (e) => { if(e.target.id === "modalLogin") tutupModalLogin(); });
+
+document.getElementById("formLogin").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const u = document.getElementById("userAdmin").value.trim();
+  const p = document.getElementById("passAdmin").value;
+  if(u === KREDENSIAL_ADMIN.username && p === KREDENSIAL_ADMIN.password){
+    sessionStorage.setItem(KUNCI_SESI, "aktif");
+    tutupModalLogin();
+    bukaDashboard();
+  }else{
+    document.getElementById("errorLogin").classList.add("tampil");
+  }
+});
+
+/* ===========================================================
+   DASHBOARD ADMIN
+   =========================================================== */
+const dashboardEl = document.getElementById("dashboard-admin");
+
+function bukaDashboard(){
+  dataSaatIni = ambilData();
+  isiFormDashboard();
+  dashboardEl.classList.add("terbuka");
+  document.body.style.overflow = "hidden";
+}
+function tutupDashboard(){
+  dashboardEl.classList.remove("terbuka");
+  document.body.style.overflow = "";
+}
+document.getElementById("tombolKeluarAdmin").addEventListener("click", () => {
+  sessionStorage.removeItem(KUNCI_SESI);
+  tutupDashboard();
+});
+
+function isiFormDashboard(){
+  // Tentang
+  document.getElementById("dbTentang").value = dataSaatIni.tentang.paragraf.join("\n\n");
+  document.getElementById("dbStatTahun").value = dataSaatIni.tentang.statTahun;
+  document.getElementById("dbStatKegiatan").value = dataSaatIni.tentang.statKegiatan;
+
+  // Kegiatan
+  renderFormKegiatanAdmin();
+
+  // Galeri
+  renderGaleriAdmin();
+
+  // Lokasi
+  document.getElementById("dbAlamat").value = dataSaatIni.lokasi.alamat;
+  document.getElementById("dbKoordinatTeks").value = dataSaatIni.lokasi.koordinatTeks;
+  document.getElementById("dbKoordinatDesimal").value = dataSaatIni.lokasi.koordinatDesimal;
+  document.getElementById("dbJamBuka").value = dataSaatIni.lokasi.jamBuka;
+
+  // Kontak
+  document.getElementById("dbWA").value = dataSaatIni.kontak.wa;
+  document.getElementById("dbEmail").value = dataSaatIni.kontak.email;
+}
+
+function tampilkanStatusSimpan(idEl){
+  const el = document.getElementById(idEl);
+  el.classList.add("tampil");
+  setTimeout(() => el.classList.remove("tampil"), 2500);
+}
+
+// --- Simpan: Tentang Kami ---
+document.getElementById("simpanTentang").addEventListener("click", () => {
+  const paragraf = document.getElementById("dbTentang").value.split("\n").map(s => s.trim()).filter(Boolean);
+  dataSaatIni.tentang.paragraf = paragraf.length ? paragraf : dataBawaan.tentang.paragraf;
+  dataSaatIni.tentang.statTahun = document.getElementById("dbStatTahun").value || dataBawaan.tentang.statTahun;
+  dataSaatIni.tentang.statKegiatan = document.getElementById("dbStatKegiatan").value || dataBawaan.tentang.statKegiatan;
+  simpanData(dataSaatIni);
+  renderTentang();
+  tampilkanStatusSimpan("statusSimpanTentang");
+});
+
+// --- Kegiatan: render form daftar kegiatan di admin ---
+function renderFormKegiatanAdmin(){
+  const c = document.getElementById("daftarKegiatanAdmin");
+  c.innerHTML = dataSaatIni.kegiatan.map((k, i) => `
+    <div class="db-list-item" data-index="${i}">
+      <button class="db-list-hapus" data-hapus="${i}">Hapus</button>
+      <div class="db-grid2">
+        <div class="db-field">
+          <label>Tanggal</label>
+          <input type="text" class="kg-tanggal" value="${escapeHTML(k.tanggal)}" placeholder="contoh: 05 Jul 2026">
+        </div>
+        <div class="db-field">
+          <label>Judul Kegiatan</label>
+          <input type="text" class="kg-judul" value="${escapeHTML(k.judul)}">
+        </div>
+      </div>
+      <div class="db-field">
+        <label>Deskripsi</label>
+        <textarea class="kg-deskripsi" rows="2">${escapeHTML(k.deskripsi)}</textarea>
+      </div>
+    </div>
+  `).join("") || `<p style="font-size:0.85rem;color:var(--kayu);">Belum ada kegiatan. Klik tombol di bawah untuk menambahkan.</p>`;
+
+  c.querySelectorAll("[data-hapus]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const idx = +btn.dataset.hapus;
+      dataSaatIni.kegiatan.splice(idx, 1);
+      renderFormKegiatanAdmin();
+    });
+  });
+}
+
+document.getElementById("tambahKegiatan").addEventListener("click", () => {
+  dataSaatIni.kegiatan.push({ tanggal: "", judul: "", deskripsi: "" });
+  renderFormKegiatanAdmin();
+});
+
+document.getElementById("simpanKegiatan").addEventListener("click", () => {
+  const items = document.querySelectorAll("#daftarKegiatanAdmin .db-list-item");
+  const baru = [];
+  items.forEach(item => {
+    const tanggal = item.querySelector(".kg-tanggal").value.trim();
+    const judul = item.querySelector(".kg-judul").value.trim();
+    const deskripsi = item.querySelector(".kg-deskripsi").value.trim();
+    if(judul) baru.push({ tanggal, judul, deskripsi });
+  });
+  dataSaatIni.kegiatan = baru;
+  simpanData(dataSaatIni);
+  renderKegiatan();
+  renderFormKegiatanAdmin();
+  tampilkanStatusSimpan("statusSimpanKegiatan");
+});
+
+// --- Galeri ---
+function renderGaleriAdmin(){
+  const c = document.getElementById("galeriAdmin");
+  c.innerHTML = dataSaatIni.galeri.map((g, i) => `
+    <div class="db-galeri-thumb">
+      <img src="${escapeHTML(g.url)}" alt="${escapeHTML(g.caption)}">
+      <button data-hapus-foto="${i}" aria-label="Hapus foto">&times;</button>
+    </div>
+  `).join("") || `<p style="font-size:0.85rem;color:var(--kayu); grid-column:1/-1;">Galeri masih kosong.</p>`;
+
+  c.querySelectorAll("[data-hapus-foto]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const idx = +btn.dataset.hapusFoto;
+      dataSaatIni.galeri.splice(idx, 1);
+      simpanData(dataSaatIni);
+      renderGaleriAdmin();
+      renderGaleri();
+    });
+  });
+}
+
+document.getElementById("tambahFoto").addEventListener("click", () => {
+  const url = document.getElementById("dbFotoUrl").value.trim();
+  const caption = document.getElementById("dbFotoCap").value.trim();
+  if(!url){ alert("Mohon isi tautan URL gambar terlebih dahulu."); return; }
+  dataSaatIni.galeri.push({ url, caption: caption || "Dokumentasi kegiatan" });
+  simpanData(dataSaatIni);
+  renderGaleriAdmin();
+  renderGaleri();
+  document.getElementById("dbFotoUrl").value = "";
+  document.getElementById("dbFotoCap").value = "";
+});
+
+// --- Simpan: Lokasi ---
+document.getElementById("simpanLokasi").addEventListener("click", () => {
+  dataSaatIni.lokasi.alamat = document.getElementById("dbAlamat").value.trim() || dataBawaan.lokasi.alamat;
+  dataSaatIni.lokasi.koordinatTeks = document.getElementById("dbKoordinatTeks").value.trim() || dataBawaan.lokasi.koordinatTeks;
+  dataSaatIni.lokasi.koordinatDesimal = document.getElementById("dbKoordinatDesimal").value.trim() || dataBawaan.lokasi.koordinatDesimal;
+  dataSaatIni.lokasi.jamBuka = document.getElementById("dbJamBuka").value.trim() || dataBawaan.lokasi.jamBuka;
+  simpanData(dataSaatIni);
+  renderLokasi();
+  tampilkanStatusSimpan("statusSimpanLokasi");
+});
+
+// --- Simpan: Kontak ---
+document.getElementById("simpanKontak").addEventListener("click", () => {
+  dataSaatIni.kontak.wa = document.getElementById("dbWA").value.trim() || dataBawaan.kontak.wa;
+  dataSaatIni.kontak.email = document.getElementById("dbEmail").value.trim() || dataBawaan.kontak.email;
+  simpanData(dataSaatIni);
+  renderKontak();
+  tampilkanStatusSimpan("statusSimpanKontak");
+});
+
+/* ===========================================================
+   PERIKSA SESI ADMIN SAAT HALAMAN DIMUAT
+   (jika sebelumnya sudah login dan belum logout/menutup tab)
+   =========================================================== */
+if(sessionStorage.getItem(KUNCI_SESI) === "aktif"){
+  // Sesi admin tetap aktif selama tab belum ditutup. Dashboard tidak otomatis
+  // terbuka agar pengunjung biasa tetap melihat halaman utama lebih dulu.
+}
+</script>
+
+</body>
+</html>
