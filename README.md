@@ -1,1 +1,0 @@
-# Conziousness-ashram
